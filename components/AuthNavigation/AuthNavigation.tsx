@@ -12,7 +12,7 @@ const AuthNavigation = () => {
     const clearIsAuthenticated = useAuthStore(
         (state) => state.clearIsAuthenticated,
     );
-    const handleLogut = async () => {
+    const handleLogout = async () => {
         await logout();
         clearIsAuthenticated();
         router.push("/sign-in");
@@ -27,7 +27,7 @@ const AuthNavigation = () => {
 
             <li className={css.navigationItem}>
                 <p className={css.userEmail}>{user?.email}</p>
-                <button className={css.logoutButton} onClick={handleLogut}>
+                <button className={css.logoutButton} onClick={handleLogout}>
                     Logout
                 </button>
             </li>

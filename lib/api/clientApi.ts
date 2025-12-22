@@ -83,12 +83,18 @@ export async function fetchNoteById(id: string): Promise<Note> {
     success: boolean;
   }
 
-  export async function checkSession() {
+export async function checkSession(): Promise<boolean> {
+  //    try {
+  //   await nextServer.get<User>("/users/me");
+  //   return true;
+  // } catch {
+  //   return false;
+  // }
     const res = await nextServer.get<CheckSessionRequest>("/auth/session");
     return res.data.success;
   }
 
-  export const getMe = async () => {
+  export const getMe = async (): Promise<User> => {
     const res = await nextServer.get<User>("/users/me");
     return res.data;
   };
