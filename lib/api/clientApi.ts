@@ -79,19 +79,19 @@ export async function fetchNoteById(id: string): Promise<Note> {
     await nextServer.post("/auth/logout");
   }
 
-  interface CheckSessionRequest {
-    success: boolean;
-  }
+  // interface CheckSessionRequest {
+  //   success: boolean;
+  // }
 
 export async function checkSession(): Promise<boolean> {
-  //    try {
-  //   await nextServer.get<User>("/users/me");
-  //   return true;
-  // } catch {
-  //   return false;
-  // }
-    const res = await nextServer.get<CheckSessionRequest>("/auth/session");
-    return res.data.success;
+     try {
+    await nextServer.get<User>("/users/me");
+    return true;
+  } catch {
+    return false;
+  }
+    // const res = await nextServer.get<CheckSessionRequest>("/auth/session");
+    // return res.data.success;
   }
 
   export const getMe = async (): Promise<User> => {
