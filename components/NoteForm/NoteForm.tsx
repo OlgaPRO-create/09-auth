@@ -2,7 +2,7 @@
 
 import css from './NoteForm.module.css';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createNote, createNotePost } from '../../lib/api/clientApi';
+import { createNote, CreateNotePost } from '../../lib/api/clientApi';
 import type { NoteTag } from '../../types/note';
 import { useRouter } from 'next/navigation';
 import { useNoteDraftStore } from "../../lib/store/noteStore";
@@ -25,7 +25,7 @@ export default function NoteForm() {
   };
 
   const mutationPost = useMutation({
-    mutationFn: async ({ title, content, tag }: createNotePost) => {
+    mutationFn: async ({ title, content, tag }: CreateNotePost) => {
       const res = await createNote({ title, content, tag });
       return res;
     },
@@ -37,7 +37,7 @@ export default function NoteForm() {
   });
 
   const handleSubmit = (formData: FormData) => {
-    const values: createNotePost = {
+    const values: CreateNotePost = {
       title: formData.get("title") as string,
       content: formData.get("content") as string,
       tag: formData.get("tag") as NoteTag,

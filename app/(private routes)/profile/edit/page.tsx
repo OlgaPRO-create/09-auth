@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import css from "./EditProfilePage.module.css";
-import { getMe, getMeUpdate } from "@/lib/api/clientApi";
+import { getMe, updateUserProfile } from "@/lib/api/clientApi";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/store/authStore";
@@ -37,7 +37,7 @@ const EditProfilePage = () => {
             toast.error("Username cannot exceed 20 characters");
             return;
         }
-        const res = await getMeUpdate({ username: userName });
+        const res = await updateUserProfile({ username: userName });
         if (res) {
             setUser(res);
             router.push("/profile");

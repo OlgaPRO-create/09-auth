@@ -1,7 +1,7 @@
 "use client";
 import css from "./page.module.css";
 
-import fetchNotes from "@/lib/api/clientApi";
+import {fetchNotes} from "@/lib/api/clientApi";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";
