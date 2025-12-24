@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import nextServer from "./api";
 import { Note } from "@/types/note";
 import { User } from "@/types/user";
+import type { AxiosResponse } from "axios";
 
 export interface NoteHttpResponse {
   notes: Note[];
@@ -54,17 +55,17 @@ export async function getMeServer(): Promise<User> {
   return data;
 }
 
-export async function checkServerSession(): Promise<boolean> {
-  const cookieStore = await cookies();
+export async function checkServerSession(): Promise<AxiosResponse | null> {
+  const cookieStore = cookies();
 
   try {
-    await nextServer.get("/auth/session", {
+    const response = await nextServer.get("/auth/session", {
       headers: {
         Cookie: cookieStore.toString(),
       },
     });
-    return true;
+    return response;
   } catch {
-    return false;
+    return null;
   }
 }

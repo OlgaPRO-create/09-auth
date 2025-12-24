@@ -8,6 +8,7 @@ import { checkServerSession } from "./lib/api/serverApi";
 const privateRoutes = ["/profile", "/notes"];
 const authRoutes = ["/sign-in", "/sign-up"];
 
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const cookieStore = await cookies();
@@ -22,6 +23,15 @@ export async function middleware(request: NextRequest) {
   if (!accessToken) {
     if (refreshToken) {
       const data = await checkServerSession();
+
+        if (!data) {
+        
+        if (isPrivateRoute) {
+          return NextResponse.redirect(new URL("/sign-in", request.url));
+        }
+        return NextResponse.next();
+      }
+
       const setCookie = data.headers["set-cookie"];
 
       if (setCookie) {
@@ -75,6 +85,8 @@ export async function middleware(request: NextRequest) {
   }
 }
 
+
 export const config = {
   matcher: ["/profile/:path*", "/notes/:path*", "/sign-in", "/sign-up"],
 };
+
