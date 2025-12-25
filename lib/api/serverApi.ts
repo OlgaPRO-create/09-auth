@@ -56,7 +56,7 @@ export async function getMeServer(): Promise<User> {
 }
 
 export async function checkServerSession(): Promise<AxiosResponse | null> {
-  const cookieStore = cookies();
+  const cookieStore =  await cookies();
 
   try {
     const response = await nextServer.get("/auth/session", {
