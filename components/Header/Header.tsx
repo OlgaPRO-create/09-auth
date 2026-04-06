@@ -11,6 +11,18 @@ export default async function Header() {
 
       <nav aria-label="Main Navigation">
         <ul className={css.navigation}>
+  <li>
+    <Link href="/">Home</Link>
+  </li>
+
+  <li>
+    <Link href="/notes/filter/all">Notes</Link>
+  </li>
+
+  <AuthNavigation />
+</ul>
+
+        {/* <ul className={css.navigation}>
           <li>
             <Link href="/">Home</Link>
           </li>
@@ -21,7 +33,7 @@ export default async function Header() {
             <Link href="/notes/filter/all">Notes</Link>
           </li>
 
-        </ul>
+        </ul> */}
       </nav>
     </header>
   );
